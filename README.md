@@ -2,109 +2,169 @@
 
 With this app, users will be able to go through a series of questions and get skincare ingredients recommendations based on their concerns.
 
-Most skincare quiz on the internet are brand specific and limited in their recommendations to the brand's products.
+Most skincare quizzes online are limited to specific brands, which can be restrictive for users. Our app focuses solely on ingredients, empowering users to make informed choices regardless of the products they use.
 
-This website is skincare neophyte friendly as only focuses on the ingredients and not the brands so users can then go out in the wild and know what to look for in the products avalailable to them.
+## Table of Contents
+
+- [Setup](#setup)
+  - [Dependencies](#dependencies)
+  - [Database Prep](#database-prep)
+    - [.env File](#env-file)
+    - [Create the Database](#create-the-database)
+    - [Run Migration](#run-migration)
+  - [Run Your Development Servers](#run-your-development-servers)
+- [Basic Description](#basic-description)
+  - [Database](#database)
+  - [Back End](#back-end)
+    - [Questions](#questions)
+    - [Answers](#answers)
+  - [Font End](#font-end)
+    - [App](#app)
+    - [ExistingUserView](#existinguserview)
+    - [NewUserView](#newuserview)
+- [User Flow](#user-flow)
+- [Conclusion](#conclusion)
 
 ## Setup
 
 ### Dependencies
 
-Run `npm install` in the project folder to install dependencies related to Express (the server).
+- In the project folder, install Express-related dependencies with:
 
-`cd client` and run `npm install` install dependencies related to React (the client).
+```bash
+npm install
+```
+
+- Navigate to the client folder and install React-related dependencies:
+
+```bash
+cd client 
+npm install
+```
 
 ### Database Prep
 
-Create `.env` file in project directory and add
+#### .env File
 
-```
+- Create a `.env` file in project directory to hold sensitive information such as API keys, database credentials, and other environment-specific variables. It's crucial to keep this information separate from your codebase for security reasons. In our case, we will use the .env file to store the credentials needed to access your MySQL database.
+
+- Add the following lines, replacing the placeholders with your actual database credentials:
+
+```env
 DB_NAME=todos
 DB_PASS=YOUR_PASSWORD
 ```
 
-(replace `YOUR_PASSWORD` with your actual password)
+*make sure to replace "YOUR PASSWORD" with your actual MySQL root password*
 
-Type `mysql -u root -p` to access the MySQL CLI using your password.
+#### Create the Database
 
-In the MySQL CLI, type `create database mvp;` to create a database in MySQL.
+Before your app can store and retrieve data, you need to set up a database. We'll be using MySQL as our database management system.
 
-Run the following in the MySQL CLI: `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'YOUR_PASSWORD';` (replace `YOUR_PASSWORD` with your actual password)
+- Open your MySQL command-line interface by entering `mysql -u root -p` in your terminal. You'll be prompted to enter your MySQL root password.
 
-Run `npm run migrate` in your **TERMINAL**, in the **project** folder (not your MySQL CLI! Open a new terminal window for this). This will create a table called 'items' in your database.
+- Once you're in the MySQL CLI, create a new database for your app by entering the following command:
+
+```sql
+create database mvp;
+```
+
+This command creates a database named mealprepapp that your app will use to store its data.
+
+- After creating the database, we need to update the user authentication method for your MySQL server to allow the app to connect. Enter the following command in the MySQL CLI, replacing YOUR_PASSWORD with your actual MySQL root password:
+
+```sql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'YOUR_PASSWORD';
+```
+
+This step is necessary to ensure compatibility between the app and the MySQL server.
+
+#### Run Migration
+
+Migrations are a way to manage your database schema and keep it in sync with your application's codebase. We'll be using migrations to create the necessary tables for your app.
+
+- In your terminal, navigate to the project directory where your app is located.
+
+- Run the following command to execute the migrations and create the required tables:
+
+```bash
+npm run migrate
+```
+
+This command will create a table named 'items' in your mealprepapp database.
+
+With these steps completed, your database will be properly set up, and your app will be able to store and retrieve data seamlessly.
 
 ### Run Your Development Servers
 
-- Run `npm start` in project directory to start the Express server on port 4000
+- Run `npm start` in your project directory to start the Express server on port 4000.
+
 - `cd client` and run `npm run dev` to start client server in development mode with hot reloading in port 5173.
-- Client is configured so all API calls will be proxied to port 4000 for a smoother development experience. Yay!
-- You can test your client app in `http://localhost:5173`
-- You can test your API in `http://localhost:5000/api`
+
+- You can test your client app in `http://localhost:5173`.
+
+- You can test your API in `http://localhost:4000/api`.
 
 ## Basic Description
 
 ### Database
 
-See [my_mvp schema](/my_mvp.png).
+![My MVP schema](/my_mvp.png).
 
-### Back-end / Front-end structure
-
-#### Back-end
+### Back End
 
 Backend files are in the routes folder. They have been split into questions and answers.
 
-##### Questions
+#### Questions
 
-5 methods were created for the questions: (only the 2nd one is currently used)
+5 routes were created for the questions: (only the 2nd one is currently used)
 
-- get all existing questions
-- get a specific ID question and the corresponding answers
-- add a question to the table
-- delete a question from the table
-- modify a question
+- "GET" all existing questions
+- "GET" a specific ID question and the corresponding answers
+- "POST" a question to the table
+- "DELETE" a question from the table
+- "PUT" modify a question
 
-##### Answers
+#### Answers
 
-6 methods were created for the answers: (only the 3rd one is currently used)
+6 routes were created for the answers: (only the 3rd one is currently used)
 
-- get all the existing answers
-- get a specific ID answer with the corresponding concern(s)
-- get a specific ID answer with the corresponding concern(s) AND ingredients
-- add an answer to the table
-- delete an answer from the table
-- modify an answer
+- "GET" all the existing answers
+- "GET" a specific ID answer with the corresponding concern(s)
+- "GET" a specific ID answer with the corresponding concern(s) AND ingredients
+- "POST" an answer to the table
+- "DELETE" an answer from the table
+- "PUT" modify an answer
 
-#### Font-end
+### Font End
 
-Front-end files are in the client/src file. They have been split between the App and its components: ExistingUserView and NewUserView.
+Front-end files are in the `client/src` folder. They have been split between the App and its components: ExistingUserView and NewUserView.
 
-##### App
+#### App
 
-The only contains the code to toggle between the 2 views.
+It contains the code to toggle between the 2 views.
 
-##### ExistingUserView
+#### ExistingUserView
 
 ExistingUserView is the view for registered users. Only the input fields and buttons have been done there at this point.
 
-##### NewUserView
+#### NewUserView
 
-NewUserView contains the skincare quiz and subsequent answers/concerns/ingredients recommandations. 
-
-It has a default welcome page with the first question of the quiz displayed.
-
-It then has 3 functions:
-
-- showQuestionnaire: this function calls the fetch method to get the questions and corresponding answers.
-- onAnswerSelected : this function helps keep track of the answers selected during the questionnaire.
-- onClickNext: this is the main function. It includes checks that answers have been selected correctcly, it moves on to the next question, adds a loading state to the page and at the last question triggers the result rendering.
+Contains skincare quiz and recommendations. Features a welcome page, question handling functions, and result rendering.
 
 ### User Flow
 
 When they get on the page, the users will by default be on the registered user page. They can toggle this view on the top right end side of the page.
 
-New user will then be prompted to complete a quiz. 5 questions will be asked with pre-created answers they can click on to select. 
+New user will then be prompted to complete a quiz. 5 questions will be asked with pre-created answers they can click on to select.
 At the end of the quiz, the page will display their results: the concerns pointed out by the answers selected and the corresponding ingredients recommended.
 
-See [quiz](/Questions-answers%20layout.png)
+![quiz](/Questions-answers%20layout.png)
 
-See [styling palette](/My%20MVP%20color%20palette.png)
+## Conclusion
+
+Thank you for exploring the Skincare Ingredients Finder App! Embrace personalized skincare by making ingredient-focused choices. Ready to get started? Clone the repository, follow setup instructions, and unlock a world of informed skincare decisions.
+
+For a visual guide to our styling, check out our [styling palette](/My%20MVP%20color%20palette.png).
+
+Happy skincare exploring!
