@@ -163,7 +163,7 @@ At the end of the quiz, the page will display their results: the concerns pointe
 
 ## Conclusion
 
-Thank you for exploring the Skincare Ingredients Finder App! Embrace personalized skincare by making ingredient-focused choices. Ready to get started? Clone the repository, follow setup instructions, and unlock a world of informed skincare decisions.
+Thank you for exploring the Skincare Ingredients Finder App! Embrace personalised skincare by making ingredient-focused choices. Ready to get started? Clone the repository, follow setup instructions, and unlock a world of informed skincare decisions.
 
 For a visual guide to our styling, check out our [styling palette](/My%20MVP%20color%20palette.png).
 
