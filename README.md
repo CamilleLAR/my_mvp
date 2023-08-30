@@ -51,7 +51,7 @@ npm install
 - Add the following lines, replacing the placeholders with your actual database credentials:
 
 ```env
-DB_NAME=todos
+DB_NAME=mvp
 DB_PASS=YOUR_PASSWORD
 ```
 
@@ -69,7 +69,7 @@ Before your app can store and retrieve data, you need to set up a database. We'l
 create database mvp;
 ```
 
-This command creates a database named mealprepapp that your app will use to store its data.
+This command creates a database named 'mvp' that your app will use to store its data.
 
 - After creating the database, we need to update the user authentication method for your MySQL server to allow the app to connect. Enter the following command in the MySQL CLI, replacing YOUR_PASSWORD with your actual MySQL root password:
 
@@ -91,7 +91,7 @@ Migrations are a way to manage your database schema and keep it in sync with you
 npm run migrate
 ```
 
-This command will create a table named 'items' in your mealprepapp database.
+This command will create the relevant tables in your mvp database.
 
 With these steps completed, your database will be properly set up, and your app will be able to store and retrieve data seamlessly.
 
@@ -167,4 +167,4 @@ Thank you for exploring the Skincare Ingredients Finder App! Embrace personalize
 
 For a visual guide to our styling, check out our [styling palette](/My%20MVP%20color%20palette.png).
 
-Happy skincare exploring!
+Happy skincare exploring !
