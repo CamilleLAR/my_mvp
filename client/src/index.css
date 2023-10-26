@@ -129,13 +129,24 @@ button:disabled {
   margin: 6vh 0px;
   padding: 40px 40px;
   border-radius: 15px;
-  box-shadow: 2px 2px 5px 2px #be9679 ;
+  background-color: #c28254;
+  box-shadow: 2px 2px 5px 2px #634026 ;
 }
 
 .loginBtn {
   margin: 20px 0px 5px 0px;
   width: fit-content;
   align-self: center;
+  box-shadow: 2px 2px 5px 2px #634026;
+}
+
+.loginBtn:hover {
+  background-color: #634026;
+  color: #e6d2c6;
+}
+
+.loginBtn:active{
+  box-shadow: inset 2px 2px 5px 2px #291b10 ;
 }
 
 .userID, .userPW {
