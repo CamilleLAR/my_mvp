@@ -244,7 +244,7 @@ function UserView() {
                 ))}
               </p>
             </div>
-            <div>
+            <div className="restartBtn">
               <button type="submit" onClick={restart}>Start again</button>
             </div>
           </div>
