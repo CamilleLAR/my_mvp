@@ -109,7 +109,13 @@ button:active{
 }
 
 .submitBtn {
+  display: flex;
+  justify-content: center;
   text-align: center;
+}
+
+.submitBtn button {
+  margin: 0px 15px;
 }
 
 .existingUserLoginPage, .newUserLoginPage {
