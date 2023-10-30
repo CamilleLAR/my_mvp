@@ -34,7 +34,7 @@ function App() {
 
         <h1>Ingredients Finder</h1>
       </header>
-      <body>{isNew ? <ExistingUserView /> : <NewUserView />}</body>
+      <main>{isNew ? <ExistingUserView /> : <NewUserView />}</main>
     </div>
   );
 }
