@@ -59,7 +59,7 @@ function UserView() {
     };
     const newResults = [...quizResults, result];
 
-    // console.log(newResults)
+    console.log(newResults)
 
     if (selectedAnswers.length === 0) {
       alert("Please select an answer.");
@@ -106,17 +106,33 @@ function UserView() {
     }
   };
 
-  const restart = (event) => {
+  const goBack = async(event) => {
     event.preventDefault();
+    setSelectedAnswerIndex(null);
+
+    const newResults = [...quizResults].toSpliced(quizResults.length-1, 1);
+    // console.log(newResults);
+
+    setIsLoading(true);
+
+    showQuestionnaire(quiz.id - 1);
+    setQuizResults(newResults);
+    setSelectedAnswers([]);
+
+    setIsLoading(false);
+  }
+
+  const restart = async(event) => {
+    event.preventDefault();
+    showQuestionnaire(1);
     setIsLoading(true);
     setSelectedAnswers([]);
     setSelectedAnswerIndex(null);
     setShowResult(false);
     setQuizResults([]);
     setRecommendedIngredients(null);
-    showQuestionnaire(1);
     setIsLoading(false);
-  }
+  };
 
   // console.log(recommendedIngredients)
 
@@ -181,6 +197,7 @@ function UserView() {
                     </ul>
                   </div>
                   <div className="submitBtn">
+                    <button onClick={goBack} disabled={quiz.id === 1}>Back</button>
                     <button
                       type="submit"
                       disabled={selectedAnswerIndex === null}
@@ -245,7 +262,9 @@ function UserView() {
               </p>
             </div>
             <div className="restartBtn">
-              <button type="submit" onClick={restart}>Start again</button>
+              <button type="submit" onClick={restart}>
+                Start again
+              </button>
             </div>
           </div>
         )}
