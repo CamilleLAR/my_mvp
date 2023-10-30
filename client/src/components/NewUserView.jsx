@@ -106,6 +106,18 @@ function UserView() {
     }
   };
 
+  const restart = (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setSelectedAnswers([]);
+    setSelectedAnswerIndex(null);
+    setShowResult(false);
+    setQuizResults([]);
+    setRecommendedIngredients(null);
+    showQuestionnaire(1);
+    setIsLoading(false);
+  }
+
   // console.log(recommendedIngredients)
 
   return (
@@ -231,6 +243,9 @@ function UserView() {
                   </span>
                 ))}
               </p>
+            </div>
+            <div>
+              <button type="submit" onClick={restart}>Start again</button>
             </div>
           </div>
         )}
