@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div className="appContainer">
-      <header>
+      <header className="banner">
         <aside className="viewButtons">
           <button
             className="oldUserButton"
@@ -31,7 +31,6 @@ function App() {
             New User
           </button>
         </aside>
-
         <h1>Ingredients Finder</h1>
       </header>
       <main>{isNew ? <ExistingUserView /> : <NewUserView />}</main>
